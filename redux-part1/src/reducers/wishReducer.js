@@ -3,7 +3,7 @@
 const nameReducer=(state=[],action)=>{
  if(action.type==='ADD_WISH')  
  { 
-   return [...state,'code']
+   return [...state,action.payload]
  }
 return state;
 }
