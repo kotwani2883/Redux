@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore,applyMiddleware} from 'redux'
+import { createStore,applyMiddleware,combineReducers} from 'redux'
 import {Provider} from 'react-redux'
-import reducer from './reducers/reducer'
+import nameReducer from './reducers/nameReducer'
 import thunk from 'redux-thunk'
+import wishReducer from './reducers/wishReducer'
 
-const store=createStore(reducer,applyMiddleware(thunk));
+const masterReducer=combineReducers({
+  name:nameReducer,
+  wish:wishReducer
+})
+
+const store=createStore(masterReducer,{name:'ramesh',wish:['eat','sleep']},applyMiddleware(thunk));
 
 ReactDOM.render(
  <Provider store={store}>
